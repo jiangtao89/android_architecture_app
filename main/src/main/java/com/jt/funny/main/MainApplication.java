@@ -6,7 +6,7 @@ import com.jt.funny.foreground.Foreground;
 /**
  * Created by jiangtao on 16/3/22.
  *
- * @author goddard.jt
+ * @author jiangtao
  * @version 1.0.0
  */
 public class MainApplication extends Application {
@@ -15,13 +15,15 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Foreground.getInstance().registerActivityLifecycle(this);
+        /** for foreground and background switch **/
+        registerActivityLifecycleCallbacks(Foreground.getInstance());
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
 
-        Foreground.getInstance().unregisterActivityLifecycle(this);
+        unregisterActivityLifecycleCallbacks(Foreground.getInstance());
     }
+
 }

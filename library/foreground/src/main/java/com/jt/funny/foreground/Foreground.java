@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * <p/>
  * 前后台变化
  *
- * @author jt
+ * @author jiangtao
  * @version 1.0.0
  */
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -44,24 +44,6 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
     private Foreground() {
         mHandler = new ForegroundHandler(Looper.getMainLooper());
         mListeners = new LinkedList<OnForegroundChangeListener>();
-    }
-
-    /**
-     * 注册 activity life cycle
-     *
-     * @param application application
-     */
-    public void registerActivityLifecycle(Application application) {
-        application.registerActivityLifecycleCallbacks(this);
-    }
-
-    /**
-     * 取消注册 activity life cycle
-     *
-     * @param application application
-     */
-    public void unregisterActivityLifecycle(Application application) {
-        application.unregisterActivityLifecycleCallbacks(this);
     }
 
     /**
@@ -176,7 +158,7 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 分发给上层处理
+     * 分发
      *
      * @param foreground foreground
      */

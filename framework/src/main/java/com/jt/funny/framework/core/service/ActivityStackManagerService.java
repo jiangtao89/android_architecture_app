@@ -1,7 +1,9 @@
-package com.jt.funny.foreground;
+package com.jt.funny.framework.core.service;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
+import android.os.Build;
 import android.os.Bundle;
 
 import java.io.PrintWriter;
@@ -14,21 +16,22 @@ import java.util.LinkedList;
  * @author jiangtao
  * @version 1.0.0
  */
-public class ActivityStackManager implements Application.ActivityLifecycleCallbacks {
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+public class ActivityStackManagerService implements Application.ActivityLifecycleCallbacks {
 
-    private static ActivityStackManager sInstance;
+    private static ActivityStackManagerService sInstance;
 
     private LinkedList<Activity> mActivities = new LinkedList<Activity>();
 
     /**
      * getInstance
      *
-     * @return ActivityStackManager
+     * @return ActivityStackManagerService
      */
-    public static ActivityStackManager getInstance() {
-        synchronized (ActivityStackManager.class) {
+    public static ActivityStackManagerService getInstance() {
+        synchronized (ActivityStackManagerService.class) {
             if (sInstance == null) {
-                sInstance = new ActivityStackManager();
+                sInstance = new ActivityStackManagerService();
             }
             return sInstance;
         }
@@ -98,6 +101,7 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
                 StringWriter wr = new StringWriter();
                 activity.dump("[" + simpleName + "]", null, new PrintWriter(wr), null);
                 builder.append(wr.toString());
+                builder.append('\n');
                 builder.append('\n');
             }
         }

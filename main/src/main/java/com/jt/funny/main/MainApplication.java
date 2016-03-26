@@ -1,8 +1,8 @@
 package com.jt.funny.main;
 
 import android.app.Application;
-import com.jt.funny.foreground.ActivityStackManager;
-import com.jt.funny.foreground.Foreground;
+import com.jt.funny.framework.core.service.ActivityStackManagerService;
+import com.jt.funny.framework.core.service.ForegroundService;
 
 /**
  * Created by jiangtao on 16/3/22.
@@ -17,10 +17,10 @@ public class MainApplication extends Application {
         super.onCreate();
 
         /** register foreground and background switch **/
-        registerActivityLifecycleCallbacks(Foreground.getInstance());
+        registerActivityLifecycleCallbacks(ForegroundService.getInstance());
 
         /** register activity stack manager */
-        registerActivityLifecycleCallbacks(ActivityStackManager.getInstance());
+        registerActivityLifecycleCallbacks(ActivityStackManagerService.getInstance());
     }
 
     @Override
@@ -28,10 +28,10 @@ public class MainApplication extends Application {
         super.onTerminate();
 
         /** unregister foreground and background switch **/
-        unregisterActivityLifecycleCallbacks(Foreground.getInstance());
+        unregisterActivityLifecycleCallbacks(ForegroundService.getInstance());
 
         /** unregister activity stack manager */
-        unregisterActivityLifecycleCallbacks(ActivityStackManager.getInstance());
+        unregisterActivityLifecycleCallbacks(ActivityStackManagerService.getInstance());
     }
 
 }

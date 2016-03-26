@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.jt.funny.foreground.ActivityStackManager;
+import com.jt.funny.framework.core.service.ActivityStackManagerService;
 
 /**
  * Created by jiangtao on 16/3/23.
@@ -27,7 +27,7 @@ public class BlankFragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("JT", ActivityStackManager.getInstance().dump());
+                Log.e("JT", ActivityStackManagerService.getInstance().dump());
             }
         });
         return textView;

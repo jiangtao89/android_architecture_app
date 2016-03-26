@@ -1,4 +1,4 @@
-package com.jt.funny.framework;
+package com.jt.funny.framework.app;
 
 import android.app.ActivityManager;
 import android.content.Context;

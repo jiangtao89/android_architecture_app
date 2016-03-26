@@ -1,1 +1,1 @@
-include ':main', ':framework', ':library:foreground'
+include ':main', ':framework', ':library:navigator'

@@ -1,4 +1,4 @@
-package com.jt.funny.foreground;
+package com.jt.funny.framework.core.service;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -16,32 +16,32 @@ import java.util.LinkedList;
  * @version 1.0.0
  */
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public class Foreground implements Application.ActivityLifecycleCallbacks {
+public class ForegroundService implements Application.ActivityLifecycleCallbacks {
 
     private static final int DELAY_MILLIS = 300;
 
     private boolean mForeground = true;
     private boolean mPaused = false;
     private ForegroundHandler mHandler;
-    private static Foreground sInstance;
+    private static ForegroundService sInstance;
 
     private LinkedList<OnForegroundChangeListener> mListeners;
 
     /**
-     * Foreground
+     * ForegroundService
      *
-     * @return Foreground
+     * @return ForegroundService
      */
-    public static Foreground getInstance() {
-        synchronized (Foreground.class) {
+    public static ForegroundService getInstance() {
+        synchronized (ForegroundService.class) {
             if (sInstance == null) {
-                sInstance = new Foreground();
+                sInstance = new ForegroundService();
             }
         }
         return sInstance;
     }
 
-    private Foreground() {
+    private ForegroundService() {
         mHandler = new ForegroundHandler(Looper.getMainLooper());
         mListeners = new LinkedList<OnForegroundChangeListener>();
     }
@@ -136,7 +136,7 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
         if (listener == null) {
             return;
         }
-        synchronized (Foreground.class) {
+        synchronized (ForegroundService.class) {
             if (!mListeners.contains(listener)) {
                 mListeners.add(listener);
             }
@@ -152,7 +152,7 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
         if (listener == null) {
             return;
         }
-        synchronized (Foreground.class) {
+        synchronized (ForegroundService.class) {
             mListeners.remove(listener);
         }
     }
@@ -163,7 +163,7 @@ public class Foreground implements Application.ActivityLifecycleCallbacks {
      * @param foreground foreground
      */
     private void dispatch(boolean foreground) {
-        synchronized (Foreground.class) {
+        synchronized (ForegroundService.class) {
             for (OnForegroundChangeListener listener : mListeners) {
                 if (foreground) {
                     listener.onSwitchForeground();

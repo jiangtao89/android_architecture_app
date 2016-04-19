@@ -24,10 +24,10 @@ public class DefaultPageRouter extends Router {
         }
 
         final Class cls = target.getClss();
-        final IRouteHandler routeListener = target.getRouteListener();
+        final IRouteHandler routeHandler = target.getRouteListener();
         try {
-            if (routeListener != null) {
-                return routeListener.open(route);
+            if (routeHandler != null) {
+                return routeHandler.open(route);
             }
             if (cls != null) {
                 Intent intent = new Intent(getContext(), cls);

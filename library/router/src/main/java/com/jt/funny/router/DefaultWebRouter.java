@@ -20,9 +20,9 @@ public class DefaultWebRouter extends Router {
 
         Router.Target target = routeManager.getTarget(uri);
         if (target != null) {
-            final IRouteHandler routeListener = target.getRouteListener();
-            if (routeListener != null) {
-                return routeListener.open(route);
+            final IRouteHandler routeHandler = target.getRouteListener();
+            if (routeHandler != null) {
+                return routeHandler.open(route);
             }
         }
 

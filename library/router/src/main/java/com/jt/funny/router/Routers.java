@@ -1,6 +1,7 @@
 package com.jt.funny.router;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -75,7 +76,6 @@ public class Routers {
      * @param router router class
      */
     public void registerRouter(@NonNull String scheme, @NonNull Router router) {
-        router.setContext(getContext());
         mRouterManager.registerRouter(scheme, router);
     }
 

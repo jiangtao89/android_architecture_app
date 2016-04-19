@@ -15,7 +15,7 @@ class RouteManager {
 
     private boolean isDebug = false;
 
-    private HashMap<String, Router.Target> mRoutes = new HashMap<String, Router.Target>(8);
+    private HashMap<String, Target> mRoutes = new HashMap<String, Target>(8);
 
     public void setDebug(boolean debug) {
         isDebug = debug;
@@ -29,7 +29,7 @@ class RouteManager {
         if (isEmptySchema(uri)) {
             return;
         }
-        Router.Target target = new Router.Target(clss);
+        Target target = new Target(clss);
         mRoutes.put(RouterUtils.decodeWithoutQuery(uri), target);
     }
 
@@ -41,11 +41,11 @@ class RouteManager {
         if (isEmptySchema(uri)) {
             return;
         }
-        Router.Target target = new Router.Target(routeListener);
+        Target target = new Target(routeListener);
         mRoutes.put(RouterUtils.decodeWithoutQuery(uri), target);
     }
 
-    public Router.Target getTarget(String uri) {
+    public Target getTarget(String uri) {
         return mRoutes.get(uri);
     }
 

@@ -1,5 +1,8 @@
 package com.jt.funny.router;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
@@ -18,6 +21,8 @@ public class Route {
     private int mFlags;
     private int mEnterAnim;
     private int mExitAnim;
+    private int mRequestCode;
+    private Activity mActivity;
 
     public Uri getUri() {
         return mUri;
@@ -51,6 +56,14 @@ public class Route {
         mExitAnim = exitAnimation;
     }
 
+    void setRequestCode(int requestCode) {
+        mRequestCode = requestCode;
+    }
+
+    public int getRequestCode() {
+        return mRequestCode;
+    }
+
     /**
      * open
      *
@@ -58,6 +71,14 @@ public class Route {
      */
     public boolean open() {
         return Routers.getInstances().open(this);
+    }
+
+    void setActivity(Activity activity) {
+        mActivity = activity;
+    }
+
+    public Activity getActivity() {
+        return mActivity;
     }
 
     /**
@@ -81,6 +102,8 @@ public class Route {
         private int mFlags;
         private int mEnterAnim;
         private int mExitAnim;
+        private int mRequestCode;
+        private Activity mActivity;
 
         Uri.Builder mBuilder = new Uri.Builder();
 
@@ -209,14 +232,24 @@ public class Route {
             return this;
         }
 
+        public Builder with(Activity activity) {
+            mActivity = activity;
+            return this;
+        }
+
+        public Builder with(Fragment fragment) {
+            mActivity = fragment.getActivity();
+            return this;
+        }
+
         /**
          * open url
          *
-         * @param uri uri
+         * @param url url
          * @return builder
          */
-        public Builder withUrl(@NonNull String uri) {
-            mBuilder = Uri.parse(uri).buildUpon();
+        public Builder withUrl(@NonNull String url) {
+            mBuilder = Uri.parse(url).buildUpon();
             return this;
         }
 
@@ -239,7 +272,7 @@ public class Route {
          * {@link android.app.Activity#overridePendingTransition(int, int)}
          *
          * @param anim anim
-         * @return
+         * @return Builder
          */
         public Builder enterAnim(int anim) {
             mEnterAnim = anim;
@@ -252,7 +285,7 @@ public class Route {
          * {@link android.app.Activity#overridePendingTransition(int, int)}
          *
          * @param anim anim
-         * @return
+         * @return Builder
          */
         public Builder exitAnim(int anim) {
             mExitAnim = anim;
@@ -260,14 +293,35 @@ public class Route {
         }
 
         /**
-         * Constructs a Uri with the current attributes.
+         * request code
+         * {@link android.app.Activity#startActivityForResult(Intent, int)}
+         *
+         * @param requestCode requestCode
+         * @return Builder
+         */
+        public Builder requestCode(int requestCode) {
+            mRequestCode = requestCode;
+            return this;
+        }
+
+        /**
+         * Constructs a Route with the current attributes.
          */
         public Route build() {
+            if (mActivity == null) {
+                if (Routers.isDebug()) {
+                    throw new IllegalArgumentException("route activity is null!");
+                }
+                return new Route();
+            }
+
             Route route = new Route();
             route.setUri(mBuilder.build());
             route.setFlags(mFlags);
             route.setEnterAnim(mEnterAnim);
             route.setExitAnim(mExitAnim);
+            route.setRequestCode(mRequestCode);
+            route.setActivity(mActivity);
             return route;
         }
 

@@ -35,7 +35,7 @@ public class BlankFragment extends Fragment {
 //                        .build();
 //                Routers.setSingletonInstance(routers);
 
-                Routers.getInstances().setContext(getActivity());
+                Routers.getInstances().setContext(getActivity().getApplication());
                 Routers.getInstances().registerRouter("funny", new DefaultPageRouter());
                 Routers.getInstances().registerRouter("http", new DefaultWebRouter());
 
@@ -72,6 +72,7 @@ public class BlankFragment extends Fragment {
 
             }
         });
+
         return textView;
     }
 }

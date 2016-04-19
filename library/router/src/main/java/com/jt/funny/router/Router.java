@@ -1,7 +1,5 @@
 package com.jt.funny.router;
 
-import android.content.Context;
-
 /**
  * Created by jiangtao on 16/3/27.
  *
@@ -10,47 +8,4 @@ import android.content.Context;
  */
 public abstract class Router implements IRouterHandler {
 
-    private Context mContext;
-
-    /**
-     * set context
-     *
-     * @param context context
-     */
-    public void setContext(Context context) {
-        mContext = context;
-    }
-
-    /**
-     * get context
-     *
-     * @return context
-     */
-    public Context getContext() {
-        return mContext;
-    }
-
-    /**
-     * Target
-     */
-    public static class Target {
-        private Class mClass;
-        private IRouteHandler mRouteListener;
-
-        public Target(Class aClass) {
-            mClass = aClass;
-        }
-
-        public Target(IRouteHandler routeListener) {
-            mRouteListener = routeListener;
-        }
-
-        public Class getClss() {
-            return mClass;
-        }
-
-        public IRouteHandler getRouteListener() {
-            return mRouteListener;
-        }
-    }
 }

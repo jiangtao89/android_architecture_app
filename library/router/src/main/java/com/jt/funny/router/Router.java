@@ -35,22 +35,22 @@ public abstract class Router implements IRouteHandler {
      */
     public static class Target {
         private Class mClass;
-        private IRouteHandler mRouteHandler;
+        private IRouteListener mRouteListener;
 
         public Target(Class aClass) {
             mClass = aClass;
         }
 
-        public Target(IRouteHandler routeHandler) {
-            mRouteHandler = routeHandler;
+        public Target(IRouteListener routeListener) {
+            mRouteListener = routeListener;
         }
 
         public Class getClss() {
             return mClass;
         }
 
-        public IRouteHandler getRouteHandler() {
-            return mRouteHandler;
+        public IRouteListener getRouteListener() {
+            return mRouteListener;
         }
     }
 }

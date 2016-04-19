@@ -94,7 +94,7 @@ public class Routers {
      * @param uri          uri
      * @param routeHandler routeHandler
      */
-    public void registerRoute(@NonNull String uri, @NonNull IRouteHandler routeHandler) {
+    public void registerRoute(@NonNull String uri, @NonNull IRouteListener routeHandler) {
         mRouteManager.registerRoute(uri, routeHandler);
     }
 
@@ -115,17 +115,7 @@ public class Routers {
             return false;
         }
 
-        String uri = URI.toString();
-        int index = uri.indexOf('?');
-        if (index > 0) {
-            uri = uri.substring(0, index);
-        }
-
-        Router.Target target = mRouteManager.getTarget(uri);
-        if (target == null) {
-            return false;
-        }
         router.setContext(getContext());
-        return router.open(route, target);
+        return router.open(route, mRouteManager);
     }
 }

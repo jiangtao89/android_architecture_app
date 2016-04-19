@@ -43,16 +43,16 @@ class RouteManager {
 
     /**
      * @param uri          uri
-     * @param routeHandler routeHandler
+     * @param routeListener routeListener
      */
-    public void registerRoute(@NonNull String uri, @NonNull IRouteHandler routeHandler) {
+    public void registerRoute(@NonNull String uri, @NonNull IRouteListener routeListener) {
         if (RouterUtils.isEmptySchema(uri)) {
             if (isDebug) {
                 throw new IllegalArgumentException("uri format error!");
             }
             return;
         }
-        Router.Target target = new Router.Target(routeHandler);
+        Router.Target target = new Router.Target(routeListener);
         int queryIndex = uri.indexOf('?');
         if (queryIndex > 0) {
             mRoutes.put(uri.substring(0, queryIndex), target);

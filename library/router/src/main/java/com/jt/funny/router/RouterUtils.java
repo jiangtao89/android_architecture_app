@@ -48,4 +48,22 @@ class RouterUtils {
         }
         return false;
     }
+
+    /**
+     * getURL
+     *
+     * @param URI URI
+     * @return uri
+     */
+    public static String getURL(Uri URI) {
+        if (URI == null) {
+            return "";
+        }
+        String uri = URI.toString();
+        int index = uri.indexOf('?');
+        if (index > 0) {
+            uri = uri.substring(0, index);
+        }
+        return uri;
+    }
 }

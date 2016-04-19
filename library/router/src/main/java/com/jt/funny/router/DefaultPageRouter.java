@@ -1,10 +1,6 @@
-package com.jt.funny.router.router;
+package com.jt.funny.router;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import com.jt.funny.router.IRouteHandler;
-import com.jt.funny.router.Route;
-import com.jt.funny.router.Router;
 
 /**
  * Created by jiangtao on 16/3/27.
@@ -15,14 +11,20 @@ import com.jt.funny.router.Router;
 public class DefaultPageRouter extends Router {
 
     @Override
-    public boolean open(@NonNull Route route, @NonNull Target target) {
-        final Class cls = target.getClss();
-        final IRouteHandler routeHandler = target.getRouteHandler();
-        try {
-            if (routeHandler != null) {
-                return routeHandler.open(route, target);
-            }
+    public boolean open(Route route, RouteManager routeManager) {
 
+        String uri = RouterUtils.getURL(route.getUri());
+        if (RouterUtils.isEmpty(uri)) {
+            return false;
+        }
+
+        Router.Target target = routeManager.getTarget(uri);
+        final Class cls = target.getClss();
+        final IRouteListener routeListener = target.getRouteListener();
+        try {
+            if (routeListener != null) {
+                return routeListener.open(route);
+            }
             if (cls != null) {
                 Intent intent = new Intent(getContext(), cls);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | route.getFlags());

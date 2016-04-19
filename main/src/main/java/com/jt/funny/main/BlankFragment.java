@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.jt.funny.router.Route;
 import com.jt.funny.router.Routers;
-import com.jt.funny.router.router.DefaultPageRouter;
+import com.jt.funny.router.DefaultPageRouter;
 
 /**
  * Created by jiangtao on 16/3/23.
@@ -41,7 +41,7 @@ public class BlankFragment extends Fragment {
                 Routers.getInstances().registerRoute("funny://www.baidu.com/page/main?tab=1", BlankActivity.class);
 
                 new Route.Builder()
-                        .withUrl("funny://www.baidu.com/page/main")
+                        .withUrl("funny://www.baidu.com/page")
                         .build()
                         .open();
 

@@ -1,4 +1,4 @@
-package com.jt.funny.navigator;
+package com.jt.funny.router;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;

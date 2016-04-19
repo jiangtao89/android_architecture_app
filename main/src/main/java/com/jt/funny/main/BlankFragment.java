@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.jt.funny.navigator.Route;
-import com.jt.funny.navigator.Routers;
-import com.jt.funny.navigator.router.DefaultPageRouter;
+import com.jt.funny.router.Route;
+import com.jt.funny.router.Routers;
+import com.jt.funny.router.router.DefaultPageRouter;
 
 /**
  * Created by jiangtao on 16/3/23.

@@ -1,4 +1,4 @@
-package com.jt.funny.navigator;
+package com.jt.funny.router;
 
 import android.content.Context;
 

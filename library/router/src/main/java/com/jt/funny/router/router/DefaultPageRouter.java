@@ -1,10 +1,10 @@
-package com.jt.funny.navigator.router;
+package com.jt.funny.router.router;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import com.jt.funny.navigator.IRouteHandler;
-import com.jt.funny.navigator.Route;
-import com.jt.funny.navigator.Router;
+import com.jt.funny.router.IRouteHandler;
+import com.jt.funny.router.Route;
+import com.jt.funny.router.Router;
 
 /**
  * Created by jiangtao on 16/3/27.

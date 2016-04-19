@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
-import com.jt.funny.navigator.Routers;
 
 public class MainActivity extends FragmentActivity {
 

@@ -1,1 +1,1 @@
-include ':main', ':framework', ':library:navigator'
+include ':main', ':framework', ':library:router'

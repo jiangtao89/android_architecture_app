@@ -26,42 +26,36 @@ class RouteManager {
      * @param clss clss
      */
     public void registerRoute(@NonNull String uri, @NonNull Class<? extends Activity> clss) {
-        if (RouterUtils.isEmptySchema(uri)) {
-            if (isDebug) {
-                throw new IllegalArgumentException("uri format error!");
-            }
+        if (isEmptySchema(uri)) {
             return;
         }
         Router.Target target = new Router.Target(clss);
-        int queryIndex = uri.indexOf('?');
-        if (queryIndex > 0) {
-            mRoutes.put(uri.substring(0, queryIndex), target);
-        } else {
-            mRoutes.put(uri, target);
-        }
+        mRoutes.put(RouterUtils.decodeWithoutQuery(uri), target);
     }
 
     /**
-     * @param uri          uri
+     * @param uri           uri
      * @param routeListener routeListener
      */
     public void registerRoute(@NonNull String uri, @NonNull IRouteHandler routeListener) {
-        if (RouterUtils.isEmptySchema(uri)) {
-            if (isDebug) {
-                throw new IllegalArgumentException("uri format error!");
-            }
+        if (isEmptySchema(uri)) {
             return;
         }
         Router.Target target = new Router.Target(routeListener);
-        int queryIndex = uri.indexOf('?');
-        if (queryIndex > 0) {
-            mRoutes.put(uri.substring(0, queryIndex), target);
-        } else {
-            mRoutes.put(uri, target);
-        }
+        mRoutes.put(RouterUtils.decodeWithoutQuery(uri), target);
     }
 
     public Router.Target getTarget(String uri) {
         return mRoutes.get(uri);
+    }
+
+    private boolean isEmptySchema(@NonNull String uri) {
+        if (RouterUtils.isEmptySchema(uri)) {
+            if (isDebug) {
+                throw new IllegalArgumentException("uri format error!");
+            }
+            return true;
+        }
+        return false;
     }
 }

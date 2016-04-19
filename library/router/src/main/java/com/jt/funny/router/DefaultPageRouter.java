@@ -13,7 +13,7 @@ public class DefaultPageRouter extends Router {
     @Override
     public boolean open(Route route, RouteManager routeManager) {
 
-        String uri = RouterUtils.getURL(route.getUri());
+        String uri = RouterUtils.decodeWithoutQuery(route.getUri());
         if (RouterUtils.isEmpty(uri)) {
             return false;
         }

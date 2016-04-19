@@ -50,16 +50,26 @@ class RouterUtils {
     }
 
     /**
-     * getURL
+     * decodeWithoutQuery
      *
-     * @param URI URI
+     * @param uri uri
      * @return uri
      */
-    public static String getURL(Uri URI) {
-        if (URI == null) {
+    public static String decodeWithoutQuery(Uri uri) {
+        if (uri == null) {
             return "";
         }
-        String uri = URI.toString();
+        String URI = uri.toString();
+        return decodeWithoutQuery(URI);
+    }
+
+    /**
+     * decodeWithoutQuery
+     *
+     * @param uri uri
+     * @return uri
+     */
+    public static String decodeWithoutQuery(String uri) {
         int index = uri.indexOf('?');
         if (index > 0) {
             uri = uri.substring(0, index);

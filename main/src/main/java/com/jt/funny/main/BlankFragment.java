@@ -38,6 +38,7 @@ public class BlankFragment extends Fragment {
                 Routers.getInstances().setContext(getActivity());
                 Routers.getInstances().registerRouter("funny", new DefaultPageRouter());
                 Routers.getInstances().registerRouter("http", new DefaultWebRouter());
+
                 Routers.getInstances().registerRoute("funny://www.baidu.com/page/main?tab=1", BlankActivity.class);
                 Routers.getInstances().registerRoute("http://www.baidu.com", new IRouteHandler() {
                     @Override
@@ -50,10 +51,24 @@ public class BlankFragment extends Fragment {
                     }
                 });
 
+//                new Route.Builder()
+//                        .scheme("funny")
+//                        .authority("page")
+//                        .appendPath("pageName")
+//                        .appendQueryParameter("id", "o")
+//                        .appendQueryParameter("a", 100)
+//                        .build()
+//                        .open();
+
                 new Route.Builder()
                         .withUrl("http://www.baidu.com")
                         .build()
                         .open();
+
+//                new Route.Builder()
+//                        .withUrl("funny://www.baidu.com")
+//                        .build()
+//                        .open();
 
             }
         });

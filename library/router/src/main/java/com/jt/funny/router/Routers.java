@@ -75,6 +75,7 @@ public class Routers {
      * @param router router class
      */
     public void registerRouter(@NonNull String scheme, @NonNull Router router) {
+        router.setContext(getContext());
         mRouterManager.registerRouter(scheme, router);
     }
 
@@ -115,7 +116,6 @@ public class Routers {
             return false;
         }
 
-        router.setContext(getContext());
         return router.open(route, mRouteManager);
     }
 }

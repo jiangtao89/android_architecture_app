@@ -19,6 +19,10 @@ public class DefaultPageRouter extends Router {
         }
 
         Router.Target target = routeManager.getTarget(uri);
+        if (target == null) {
+            return false;
+        }
+
         final Class cls = target.getClss();
         final IRouteListener routeListener = target.getRouteListener();
         try {

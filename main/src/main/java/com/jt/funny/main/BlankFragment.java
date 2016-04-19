@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.jt.funny.router.DefaultWebRouter;
 import com.jt.funny.router.Route;
 import com.jt.funny.router.Routers;
 import com.jt.funny.router.DefaultPageRouter;
@@ -38,10 +39,11 @@ public class BlankFragment extends Fragment {
 
                 Routers.getInstances().setContext(getActivity());
                 Routers.getInstances().registerRouter("funny", new DefaultPageRouter());
+                Routers.getInstances().registerRouter("http", new DefaultWebRouter());
                 Routers.getInstances().registerRoute("funny://www.baidu.com/page/main?tab=1", BlankActivity.class);
 
                 new Route.Builder()
-                        .withUrl("funny://www.baidu.com/page")
+                        .withUrl("http://www.baidu.com")
                         .build()
                         .open();
 

@@ -3,12 +3,13 @@ package com.jt.funny.main;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.jt.funny.framework.core.service.ActivityStackManagerService;
+import com.jt.funny.navigator.Route;
+import com.jt.funny.navigator.Routers;
+import com.jt.funny.navigator.router.DefaultPageRouter;
 
 /**
  * Created by jiangtao on 16/3/23.
@@ -27,7 +28,23 @@ public class BlankFragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("JT", ActivityStackManagerService.getInstance().dump());
+//                Routers.Builder builder = new Routers.Builder();
+//                Routers routers
+//                        = builder.context(getActivity())
+//                        .registerRouter("http://www.baidu.com/page/main?tab=1", new DefaultPageRouter())
+//                        .debug(true)
+//                        .build();
+//                Routers.setSingletonInstance(routers);
+
+                Routers.getInstances().setContext(getActivity());
+                Routers.getInstances().registerRouter("funny", new DefaultPageRouter());
+                Routers.getInstances().registerRoute("funny://www.baidu.com/page/main?tab=1", BlankActivity.class);
+
+                new Route.Builder()
+                        .withUrl("funny://www.baidu.com/page/main")
+                        .build()
+                        .open();
+
             }
         });
         return textView;

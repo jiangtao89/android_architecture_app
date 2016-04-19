@@ -4,8 +4,19 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import butterknife.Bind;
+import butterknife.BindString;
+import butterknife.ButterKnife;
+import com.jt.funny.navigator.Routers;
 
 public class MainActivity extends FragmentActivity {
+
+    @Bind(R.id.main)
+    FrameLayout mFrameLayout;
+
+    @BindString(R.string.app_name)
+    String mAppName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +27,11 @@ public class MainActivity extends FragmentActivity {
                 .beginTransaction()
                 .replace(R.id.main, new BlankFragment())
                 .commitAllowingStateLoss();
+
+        ButterKnife.bind(this);
+
+
+        mFrameLayout.getLayoutParams();
     }
 
     @Override

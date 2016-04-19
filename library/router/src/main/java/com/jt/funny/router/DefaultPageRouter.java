@@ -24,7 +24,7 @@ public class DefaultPageRouter extends Router {
         }
 
         final Class cls = target.getClss();
-        final IRouteListener routeListener = target.getRouteListener();
+        final IRouteHandler routeListener = target.getRouteListener();
         try {
             if (routeListener != null) {
                 return routeListener.open(route);

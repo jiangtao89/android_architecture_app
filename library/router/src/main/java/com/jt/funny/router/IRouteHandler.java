@@ -1,18 +1,17 @@
 package com.jt.funny.router;
 
 /**
- * Created by jiangtao on 16/3/27.
+ * Created by jiangtao on 16/4/19.
  *
- * @author jiangtao
+ * @author jiang.tao
  * @version 1.0.0
  */
 public interface IRouteHandler {
 
     /**
-     * open route
+     * open
      *
-     * @param route        route
-     * @param routeManager routeManager
+     * @param route route
      */
-    public boolean open(Route route, RouteManager routeManager);
+    public boolean open(Route route);
 }

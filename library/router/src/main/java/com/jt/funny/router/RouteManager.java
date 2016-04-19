@@ -45,7 +45,7 @@ class RouteManager {
      * @param uri          uri
      * @param routeListener routeListener
      */
-    public void registerRoute(@NonNull String uri, @NonNull IRouteListener routeListener) {
+    public void registerRoute(@NonNull String uri, @NonNull IRouteHandler routeListener) {
         if (RouterUtils.isEmptySchema(uri)) {
             if (isDebug) {
                 throw new IllegalArgumentException("uri format error!");

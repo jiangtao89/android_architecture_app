@@ -8,7 +8,7 @@ import android.content.Context;
  * @author jiangtao
  * @version 1.0.0
  */
-public abstract class Router implements IRouteHandler {
+public abstract class Router implements IRouterHandler {
 
     private Context mContext;
 
@@ -35,13 +35,13 @@ public abstract class Router implements IRouteHandler {
      */
     public static class Target {
         private Class mClass;
-        private IRouteListener mRouteListener;
+        private IRouteHandler mRouteListener;
 
         public Target(Class aClass) {
             mClass = aClass;
         }
 
-        public Target(IRouteListener routeListener) {
+        public Target(IRouteHandler routeListener) {
             mRouteListener = routeListener;
         }
 
@@ -49,7 +49,7 @@ public abstract class Router implements IRouteHandler {
             return mClass;
         }
 
-        public IRouteListener getRouteListener() {
+        public IRouteHandler getRouteListener() {
             return mRouteListener;
         }
     }

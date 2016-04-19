@@ -95,7 +95,7 @@ public class Routers {
      * @param uri          uri
      * @param routeHandler routeHandler
      */
-    public void registerRoute(@NonNull String uri, @NonNull IRouteListener routeHandler) {
+    public void registerRoute(@NonNull String uri, @NonNull IRouteHandler routeHandler) {
         mRouteManager.registerRoute(uri, routeHandler);
     }
 
